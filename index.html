@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turbo Premium MAX Full</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: 
+        radial-gradient(ellipse at center, #0a0a1a 0%, #000 70%),
+        radial-gradient(circle at 20% 10%, #00ff88 0%, transparent 50%),
+        radial-gradient(circle at 80% 90%, #00ffff 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0,255,136,0.1) 0%, transparent 70%);
+    background-size: cover, 200px 200px, 150px 150px, cover;
+    background-attachment: fixed;
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated floating particles */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #00ff88, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(0,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #00ff88, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(0,255,255,0.6), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: floatParticles 25s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes floatParticles {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(100px, 100px) rotate(360deg); }
+}
+
+/* Main overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 26, 0.82);
+    backdrop-filter: blur(2px);
+    z-index: 2;
+}
+
+/* ROTATING VPN TRIANGLE - Markazda yonib turgan */
+.vpn-shield {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    margin-left: -150px;
+    margin-top: -150px;
+    z-index: 3;
+    animation: rotateShield 12s linear infinite, glowPulse 2s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.vpn-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 120px solid transparent;
+    border-right: 120px solid transparent;
+    border-bottom: 200px solid #00ff88;
+    top: 50px;
+    left: 50%;
+    margin-left: -120px;
+    filter: drop-shadow(0 0 30px #00ff88);
+    animation: triangleGlow 1.5s ease-in-out infinite alternate;
+}
+
+.vpn-triangle::before {
+    content: 'VPN';
+    position: absolute;
+    top: 70px;
+    left: -35px;
+    color: #000;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+}
+
+.vpn-circle {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 3px solid rgba(0,255,255,0.8);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-left: -90px;
+    margin-top: -90px;
+    animation: circleSpin 4s linear infinite;
+}
+
+.vpn-circle-inner {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #00ff88, #00ffff);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    box-shadow: 0 0 40px #00ff88;
+    animation: innerPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes rotateShield {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes glowPulse {
+    0% { filter: drop-shadow(0 0 20px #00ff88); }
+    100% { filter: drop-shadow(0 0 60px #00ff88) drop-shadow(0 0 80px #00ffff); }
+}
+
+@keyframes triangleGlow {
+    0% { border-bottom-color: #00ff88; filter: drop-shadow(0 0 20px #00ff88); }
+    100% { border-bottom-color: #00ffff; filter: drop-shadow(0 0 40px #00ffff); }
+}
+
+@keyframes circleSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes innerPulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px #00ff88; }
+    100% { transform: scale(1.15); box-shadow: 0 0 50px #00ff88; }
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    z-index: 4;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px #00ff88;
+    background: linear-gradient(45deg, #00ff88, #00ffff, #00ff88);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    0% { filter: drop-shadow(0 0 10px #00ff88); }
+    100% { filter: drop-shadow(0 0 30px #00ff88); }
+}
+
+.timer {
+    text-align: center;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-shadow: 0 0 10px #ff4d4d;
+}
+
+.progress-container {
+    width: 100%;
+    background: rgba(255,255,255,.1);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    height: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,255,136,0.3);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg,#00ff88,#00ffff);
+    border-radius: 15px;
+    transition: 0.4s;
+    box-shadow: 0 0 20px #00ff88;
+}
+
+.card {
+    background: rgba(17,17,17,0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: .3s;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.card:hover {
+    border-color: #00ff88;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0,255,136,0.4);
+}
+
+.price {
+    font-size: 28px;
+    color: #00ff88;
+    font-weight: bold;
+    text-shadow: 0 0 15px #00ff88;
+}
+
+.old {
+    color: #777;
+    text-decoration: line-through;
+}
+
+.btn {
+    background: linear-gradient(135deg, #00ff88, #00ffff);
+    color: #000;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: .3s;
+    box-shadow: 0 4px 15px rgba(0,255,136,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.qr {
+    margin-top: 10px;
+}
+
+.section-title {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.feed {
+    height: 140px;
+    overflow-y: auto;
+    font-size: 13px;
+    color: #00ff88;
+    padding-right: 5px;
+}
+
+.fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #00ff88, #00ffff);
+    color: #000;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 999;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+.badge {
+    background: #00ff88;
+    color: #000;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.analytics {
+    font-size: 12px;
+    color: #00ff88;
+    margin-top: 10px;
+}
+
+.tooltip {
+    position: absolute;
+    background: #00ff88;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: .3s;
+    pointer-events: none;
+}
+
+.card:hover .tooltip {
+    opacity: 1;
+}
+
+.instruction p {
+    margin: 3px 0;
+}
+</style>
+</head>
+<body>
+
+<!-- VPN SHIELD - Markazda aylanib turgan uchburchak -->
+<div class="vpn-shield">
+    <div class="vpn-circle">
+        <div class="vpn-circle-inner"></div>
+    </div>
+    <div class="vpn-triangle"></div>
+</div>
+
+<div class="container">
+
+<h1>Turbo Premium MAX</h1>
+<div class="timer">Offer ends in: <span id="countdown"></span></div>
+<div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
+<!-- Plans -->
+<div class="card">
+<div class="tooltip">Popular Choice!</div>
+<div class="section-title">Basic Plan <span class="badge">POPULAR</span></div>
+<div class="old">150 ₽</div>
+<div class="price">75 ₽</div>
+✔ Instant activation<br>
+✔ All core features<br>
+<button class="btn" onclick="buyPlan('75 ₽','https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79990402614&bankCode=100000000111')">Buy 75 ₽</button>
+</div>
+
+<div class="card">
+<div class="section-title">Standard Plan</div>
+<div class="old">350 ₽</div>
+<div class="price">200 ₽</div>
+✔ Faster activation<br>
+✔ Priority support<br>
+✔ Bonus features<br>
+<button class="btn" onclick="buyPlan('200 ₽','https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79990402614&bankCode=100000000111')">Buy 200 ₽</button>
+</div>
+
+<div class="card">
+<div class="section-title">MAX Plan</div>
+<div class="price">350 ₽</div>
+✔ Full unlimited access<br>
+✔ VIP priority<br>
+✔ Extra bonuses<br>
+<button class="btn" onclick="buyPlan('350 ₽','https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79990402614&bankCode=100000000111')">Buy 350 ₽</button>
+</div>
+
+<!-- Trial -->
+<div class="card">
+<div class="section-title">7-Day Free Trial</div>
+✔ Access all features for 7 days<br>
+<button class="btn" onclick="openTrial()">Start Free Trial</button>
+</div>
+
+<!-- Payment -->
+<div class="card" id="payment">
+<div class="section-title">Payment Methods</div>
+<b>Sberbank</b><br>
+<button class="btn" onclick="openSber()">Pay via Sber</button>
+
+<br><br><b>TON</b>
+<p id="ton">UQCe2TzE4kDy9dTgiESd_xCTX9FLrVGm29JX-RqaYKhEr0kT</p>
+<div id="tonQR" class="qr"></div>
+
+<br><b>USDT (TON)</b>
+<p id="usdt">UQCe2TzE4kDy9dTgiESd_xCTX9FLrVGm29JX-RqaYKhEr0kT</p>
+<div id="usdtQR" class="qr"></div>
+
+<br><b>BTC</b>
+<p id="btc">bc1qy6plufjfejyn6cltxlqmhq6u28yp87r9dpufr3</p>
+<div id="btcQR" class="qr"></div>
+
+<button class="btn" onclick="openTelegram()">Send Payment Screenshot</button>
+</div>
+
+<!-- Promo -->
+<div class="card">
+<div class="section-title">Promo Code</div>
+<input id="promo" placeholder="Enter promo">
+<button class="btn" onclick="activatePromo()">Activate</button>
+<p id="promoMsg"></p>
+</div>
+
+<!-- Referral -->
+<div class="card">
+<div class="section-title">Referral</div>
+<input value="https://t.me/TurboNet_RU_bot?start=music_yt_0fYpjWjwcmU" id="ref">
+<button class="btn" onclick="copyRef()">Copy Referral</button>
+<p id="refCount"></p>
+</div>
+
+<!-- Live purchases -->
+<div class="card">
+<div class="section-title">Recent Purchases</div>
+<div class="feed" id="feed"></div>
+</div>
+
+<!-- VPN Instruction -->
+<div class="card instruction">
+<div class="section-title">📱 Как подключить VPN?</div>
+<p>1️⃣ Оплатите выбранный тариф</p>
+<p>2️⃣ Получите персональный ключ доступа</p>
+<p>3️⃣ Установите приложение V2RayTun</p>
+<p>4️⃣ Вставьте ключ и подключитесь</p>
+<br>
+<b>✅ Подключение занимает меньше 1 минуты</b>
+<br><br>
+<a href="https://t.me/TurboNet_RU_bot" target="_blank">Если возникнут вопросы — напишите в поддержку 💬</a>
+</div>
+
+<!-- Analytics + CSV Export -->
+<div class="analytics card">
+<h3>Analytics (Simulation)</h3>
+<p id="clickStats">Plan clicks: 0 | Trial started: 0 | Promo used: 0 | Referral copies: 0</p>
+<button class="btn" onclick="exportCSV()">Export CSV</button>
+</div>
+
+</div>
+
+<div class="fixed" onclick="scrollPay()">Get Access Now</div>
+
+<script>
+// QR Codes
+new QRCode(document.getElementById("tonQR"),{text:document.getElementById("ton").innerText,width:90,height:90});
+new QRCode(document.getElementById("usdtQR"),{text:document.getElementById("usdt").innerText,width:90,height:90});
+new QRCode(document.getElementById("btcQR"),{text:document.getElementById("btc").innerText,width:90,height:90});
+
+// Analytics + log storage
+let analytics={planClicks:0,trial:0,promo:0,ref:0};
+let log=[];
+
+// Update Analytics
+function updateAnalytics(){document.getElementById("clickStats").innerText=
+`Plan clicks: ${analytics.planClicks} | Trial started: ${analytics.trial} | Promo used: ${analytics.promo} | Referral copies: ${analytics.ref}`;}
+
+// Buy Plan
+function buyPlan(plan,url){
+analytics.planClicks++; updateAnalytics();
+log.push({time:new Date().toISOString(),type:'plan',plan:plan});
+window.location.href = url;
+let names=["Alex","Ivan","Sergey","Timur","Aziz","Ali","Bek","Sardor","Roman","Nikita","Daniel","Andrey","Oleg","Vlad","Rustam","Kamol","Ibrohim","Artem","Dmitry"];
+let name=names[Math.floor(Math.random()*names.length)];
+document.getElementById("feed").innerHTML="<div>"+name+" purchased "+plan+"</div>"+document.getElementById("feed").innerHTML;
+scrollPay();
+}
+
+// Trial
+function openTrial(){analytics.trial++; updateAnalytics(); log.push({time:new Date().toISOString(),type:'trial'}); window.open("https://hirbilon.net/open?sub_url=https://g3.hirbilon.net:443/yessub/p5ln8k1qld9nf0sa");}
+
+// Telegram / Sber
+function openTelegram(){window.open("https://t.me/TurboNet_RU_bot");}
+function openSber(){window.open("https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79990402614&bankCode=100000000111");}
+
+// Referral / Promo
+function copyRef(){analytics.ref++; updateAnalytics(); log.push({time:new Date().toISOString(),type:'referral'}); navigator.clipboard.writeText(document.getElementById("ref").value);}
+function activatePromo(){
+if(localStorage.getItem("promoUsed")){document.getElementById("promoMsg").innerText="Already used"; return;}
+if(document.getElementById("promo").value==="Husnijan_Axi"){analytics.promo++; localStorage.setItem("promoUsed",true); document.getElementById("promoMsg").innerText="Bonus activated"; log.push({time:new Date().toISOString(),type:'promo'}); updateAnalytics();}
+else{document.getElementById("promoMsg").innerText="Invalid";}
+}
+
+// Countdown + progress bar
+let count=5400;
+setInterval(()=>{
+let h=Math.floor(count/3600), m=Math.floor((count%3600)/60), s=count%60;
+document.getElementById("countdown").innerText=(h>0?h+"h ":"")+m+"m "+s+"s";
+let progress=document.getElementById("progressBar");
+progress.style.width=Math.min((5400-count)/5400*100,100)+"%";
+count--;
+},1000);
+
+// Live purchase simulation
+setInterval(()=>{
+let names=["Alex","Ivan","Sergey","Timur","Aziz","Ali","Bek","Sardor","Roman","Nikita","Daniel","Andrey","Oleg","Vlad","Rustam","Kamol","Ibrohim","Artem","Dmitry"];
+let plan=["75 ₽","200 ₽","350 ₽"][Math.floor(Math.random()*3)];
+let name=names[Math.floor(Math.random()*names.length)];
+document.getElementById("feed").innerHTML="<div>"+name+" purchased "+plan+"</div>"+document.getElementById("feed").innerHTML;
+},1800);
+
+// Scroll
+function scrollPay(){document.getElementById("payment").scrollIntoView({behavior:"smooth"});}
+
+// CSV Export
+function exportCSV(){
+if(log.length===0){alert("No data"); return;}
+let csv="Time,Type,Plan\n";
+log.forEach(e=>{csv+=`${e.time},${e.type || ''},${e.plan || ''}\n`;});
+let blob=new Blob([csv],{type:"text/csv"});
+let url=URL.createObjectURL(blob);
+let a=document.createElement("a");
+a.href=url; a.download="analytics.csv"; a.click();
+}
+</script>
+
+</body>
+</html>
